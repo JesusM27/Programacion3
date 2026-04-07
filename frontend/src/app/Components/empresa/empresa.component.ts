@@ -34,5 +34,25 @@ export class EmpresaComponent implements OnInit {
         this.TUser = res;
       }, err => console.error(err));
   }
+AgregarValor(){
+    delete this.user.idempresa;   
+    this.Data.save(this.user,'/empresa')
+       .subscribe(
+         res => {
+
+this.getUser();
+         },
+         err => console.error(err)
+       );
+}
+  EliminarData(id: number){
+    this.Data.delete(id, '/empresa')
+      .subscribe(
+        res => {
+          this.getUser();
+        },
+        err => console.error(err)
+      );
+  }
 
 }

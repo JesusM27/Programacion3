@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+   <div class="container">
+      <!-- Opciones del Modulo-->
+      <button mat-button [matMenuTriggerFor]="menu1">Sistema</button> <!-- Agregar nombre de Menu-->
+  
+        <mat-menu #menu1="matMenu">
+          <button mat-menu-item [matMenuTriggerFor]="SubMenu1">Opcion1</button>
+          <button mat-menu-item [matMenuTriggerFor]="SubMenu2">Opcion2</button>
+        </mat-menu>
+  
+        <!--Opcion del SUBMENU Opcion1-->
+        <mat-menu #SubMenu1="matMenu">
+          <a mat-menu-item href="/empresa">Empresa</a>
+          <a mat-menu-item href="/clientes">Clientes</a>
+          <a mat-menu-item href="/proveedor">Proveedor</a>
+          <a mat-menu-item href="/producto">Productos</a>
+          <a mat-menu-item href="/areas_trabajo">Areas de Trabajo</a>
+        </mat-menu>
+  
+        <!--Opcion del SUBMENU Opcion1-->
+        <mat-menu #SubMenu2="matMenu">
+            <a mat-menu-item href="/sucursales">Sucursales</a><!--Colocar el nombre del app-routing.module.ts-->
+            <a mat-menu-item href="/Html2">html2</a>
+            <a mat-menu-item href="/Html3">html3</a>
+            <a mat-menu-item href="/Html4">html4</a>
+            <a mat-menu-item href="/Htaml5">html5</a>
+    
+          </mat-menu>
+          <button mat-button [matMenuTriggerFor]="menu2">Consultas</button> <!-- Agregar nombre de Menu-->
+       
+          <mat-menu #menu2="matMenu">
+            <button mat-menu-item [matMenuTriggerFor]="SubMenu1">Opcion1</button>
+          
+          </mat-menu>
+          <mat-menu #SubMenu1="matMenu">
+            <a mat-menu-item href="/Html1">html1</a><!--Colocar el nombre del app-routing.module.ts-->
+            
+          </mat-menu>
+        
+       </div>
+  </nav>

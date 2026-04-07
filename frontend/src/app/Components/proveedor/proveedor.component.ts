@@ -22,17 +22,34 @@ export class ProveedorComponent implements OnInit {
     estado: 'Activo'
   }
 
+  Empresalist: any;
+
   constructor(private Data: DataService) { }
 
-  ngOnInit(): void {
+ngOnInit(): void {
     this.getUser();
+    this.getDropListEmpresa();
+  }
+
+    getDropListEmpresa() {
+    this.Data.getDropListEmpresa().subscribe((data:any)=>{
+      this.Empresalist=data;
+    })
   }
 
   getUser() {
     this.Data.getAll('/proveedor')
-      .subscribe(res => {
-        this.TUser = res;
-      }, err => console.error(err));
+      .subscribe(res => this.TUser = res, err => console.error(err));
   }
 
+  AgregarValor(){
+    delete this.user.idprov;
+    this.Data.save(this.user,'/proveedor')
+      .subscribe(() => this.getUser(), err => console.error(err));
+  }
+
+  EliminarData(id: number){
+    this.Data.delete(id, '/proveedor')
+      .subscribe(() => this.getUser(), err => console.error(err));
+  }
 }

@@ -26,17 +26,55 @@ export class ProductoComponent implements OnInit {
     estado: 'Activo'
   }
 
+  Empresalist: any;
+  Sucursallist: any;
+  Tpprodlist: any;
+
   constructor(private Data: DataService) { }
 
   ngOnInit(): void {
     this.getUser();
+    this.getDropListEmpresa();
+    this.getDropListSucursales();
+    this.getDropListTipoproducto();
+  }
+
+  getDropListEmpresa() {
+    this.Data.getDropListEmpresa().subscribe((data: any) => {
+      this.Empresalist = data;
+    })
+  }
+
+  getDropListSucursales() {
+    this.Data.getDropListSucursales().subscribe((data: any) => {
+      this.Sucursallist = data;
+    })
+  }
+
+  getDropListTipoproducto() {
+    this.Data.getDropListTipoproducto().subscribe((data: any) => {
+      this.Tpprodlist = data;
+    })
   }
 
   getUser() {
     this.Data.getAll('/producto')
-      .subscribe(res => {
-        this.TUser = res;
-      }, err => console.error(err));
+      .subscribe(res => this.TUser = res, err => console.error(err));
   }
 
+  AgregarValor() {
+    delete this.user.num_prod;   
+    this.Data.save(this.user, '/producto')
+       .subscribe(
+         res => {
+           this.getUser();
+         },
+         err => console.error(err)
+       );
+  }
+
+  EliminarData(id: number){
+    this.Data.delete(id, '/producto')
+      .subscribe(() => this.getUser(), err => console.error(err));
+  }
 }

@@ -2,36 +2,101 @@
     <a href="/" class="navbar-brand">REGISTRO DE USUARIO</a>
 </nav>
 
-<div class="container">  
-    <div class="row mt-25">          
-        <table class="table table-borbered table-hover">
-            <thead>
-                <tr>
-                    <th>NO</th>
-                    <th>ID EMPRESA</th>
-                    <th>ID SUCURSAL</th>
-                    <th>ID TIPO USUARIO</th>
-                    <th>ID EMPLEADO</th>
-                    <th>USUARIO</th>
-                    <th>CLAVE</th>
-                    <th>ESTADO</th>
-                </tr>
-            </thead>
+<div class="agregar_contenedor">
+    <div class="row mt-5">
+        <div class="card">
+            <div class="card-body">
+                <form id="formulario" name="formulario" #f="ngForm" (ngSubmit)="AgregarValor()" novalidate>
+                    <div class="form-group">
+                        <label for="" class="control-label" hidden>Registro No.</label>
+                        <input type="text" readonly="readonly" [(ngModel)]="$any(user).userid" name="userid" placeholder="No" class="form-control" required hidden>
+                    </div>
 
-            <tbody>
-                <tr *ngFor="let User of TUser">
-                    <td>{{User.userid}}</td>
-                    <td>{{User.idempresa}}</td>
-                    <td>{{User.idsuc}}</td>
-                    <td>{{User.idtpusuario}}</td>
-                    <td>{{User.idemp}}</td>
-                    <td>{{User.usuario}}</td>
-                    <td>{{User.clave}}</td>
-                    <td>{{User.estado}}</td>
-                    <td><button class="btn btn-danger">Eliminar</button></td>
-                    <td><button class="btn btn-success">Actualizar</button></td>
-                </tr>
-            </tbody>
-        </table>
+                    <div class="form-group">
+                        <label for="" class="control-label">Empresa</label>
+                        <select class="form-control" [(ngModel)]="$any(user).idempresa" name="idempresa" autofocus>
+                            <option *ngFor="let lista of Empresalist" [value]="lista.idempresa">{{lista.nombre}}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" class="control-label">Sucursal</label>
+                        <select class="form-control" [(ngModel)]="$any(user).idsuc" name="idsuc">
+                            <option *ngFor="let s of Sucursallist" [value]="s.idsuc">{{s.sucursal}}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" class="control-label">Tipo Usuario</label>
+                        <select class="form-control" [(ngModel)]="$any(user).idtpusuario" name="idtpusuario">
+                            <option *ngFor="let tp of Tpusuariolist" [value]="tp.idtpusuario">{{tp.tipo}}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" class="control-label">Empleado</label>
+                        <select class="form-control" [(ngModel)]="$any(user).idemp" name="idemp">
+                            <option *ngFor="let e of Empleadolist" [value]="e.idemp">{{e.nombres}}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" class="control-label">Usuario</label>
+                        <input type="text" [(ngModel)]="$any(user).usuario" name="usuario" placeholder="DIGITE USUARIO" class="form-control">
+                        <div ng-show="!user.usuario && formulario.$submitted" class="alert alert-warning">Digite el Usuario</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" class="control-label">Clave</label>
+                        <input type="password" [(ngModel)]="$any(user).clave" name="clave" placeholder="DIGITE CLAVE" class="form-control">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" formnovalidate value="Save" onclick="javascript:alert('Registro Almacenado')">
+                        Agregar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="row mt-25">
+            <table class="table table-borbered table-hover">
+                <thead>
+                    <tr>
+                        <th>NO</th>
+                        <th>ID EMPRESA</th>
+                        <th>ID SUCURSAL</th>
+                        <th>ID TIPO USUARIO</th>
+                        <th>ID EMPLEADO</th>
+                        <th>USUARIO</th>
+                        <th>CLAVE</th>
+                        <th>ESTADO</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let User of TUser">
+                        <td>{{User.userid}}</td>
+                        <td>{{User.idempresa}}</td>
+                        <td>{{User.idsuc}}</td>
+                        <td>{{User.idtpusuario}}</td>
+                        <td>{{User.idemp}}</td>
+                        <td>{{User.usuario}}</td>
+                        <td>{{User.clave}}</td>
+                        <td>{{User.estado}}</td>
+                        <td>
+                            <button class="btn btn-danger" (click)="EliminarData(User.userid)" onclick="javascript:alert('Registro Eliminado')">Eliminar</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-success" [routerLink]="['/usuario/edit', User.userid]">
+                                Actualizar
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

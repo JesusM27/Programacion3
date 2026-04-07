@@ -117,9 +117,9 @@ export interface formapago {
   formapago?: string | null;
   estado?: string;
 }
-export interface User{
+export interface User {
     ctipou?: number;
-    descripcion?: string;
+    descripcion?: string | null;
     estado?: string;
-  }
-
+    [key: string]: any;   // <-- permite cualquier propiedad adicional
+}

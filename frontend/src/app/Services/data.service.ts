@@ -56,4 +56,24 @@ export class DataService {
     return throwError(errorMessage);
  }
 
+ getDropListEmpresa():Observable<any[]>{
+return this.http.get<any>(this.API_URI+'/empresa')
+}
+getDropListSucursales(): Observable<any[]> {
+  return this.http.get<any>(this.API_URI + '/sucursales');
+}
+
+getDropListAreas(): Observable<any[]> {
+  return this.http.get<any>(this.API_URI + '/areas_trabajo');
+}
+getDropListTipousuario(): Observable<any[]> {
+  return this.http.get<any>(this.API_URI + '/tipousuario'); 
+}
+getDropListEmpleados(): Observable<any[]> {
+  return this.http.get<any>(this.API_URI + '/empleados');
+}
+  getDropListTipoproducto() {
+    return this.http.get(`${this.API_URI}/tipoproducto`);
+  }
+
 }
