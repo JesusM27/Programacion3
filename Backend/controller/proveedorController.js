@@ -48,7 +48,7 @@ controller.delete = (req, res) => {
     const { idprov } = req.params;
 
     req.getConnection((err, conn) => {
-        conn.query('update proveedor set estado="Inactivo" from proveedor where idprov = ?', [idprov], (err, rows) => {
+        conn.query('update proveedor set estado="INACTIVO" where idprov = ?', [idprov], (err, rows) => {
             res.json({ message: "Registro Eliminado" });
         });
     });

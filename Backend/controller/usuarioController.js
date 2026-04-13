@@ -48,7 +48,7 @@ controller.delete = (req, res) => {
     const { userid } = req.params;
 
     req.getConnection((err, conn) => {
-        conn.query('update usuario set estado="Inactivo" from usuario where userid = ?', [userid], (err, rows) => {
+        conn.query('update usuario set estado="INACTIVO" where userid = ?', [userid], (err, rows) => {
             res.json({ message: "Registro Eliminado" });
         });
     });

@@ -48,7 +48,7 @@ controller.delete = (req, res) => {
     const { idfpago } = req.params;
 
     req.getConnection((err, conn) => {
-        conn.query('update formapago set estado="Inactivo" from formapago where idfpago = ?', [idfpago], (err, rows) => {
+        conn.query('update formapago set estado="INACTIVO" where idfpago = ?', [idfpago], (err, rows) => {
             res.json({ message: "Registro Eliminado" });
         });
     });

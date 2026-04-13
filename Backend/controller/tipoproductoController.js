@@ -48,7 +48,7 @@ controller.delete = (req, res) => {
     const { idtpprod } = req.params;
 
     req.getConnection((err, conn) => {
-        conn.query('update tipoproducto set estado="Inactivo" from tipoproducto where idtpprod = ?', [idtpprod], (err, rows) => {
+        conn.query('update tipoproducto set estado="INACTIVO" where idtpprod = ?', [idtpprod], (err, rows) => {
             res.json({ message: "Registro Eliminado" });
         });
     });

@@ -48,7 +48,7 @@ controller.delete = (req, res) => {
     const { num_clie } = req.params;
 
     req.getConnection((err, conn) => {
-        conn.query('update clientes set estado="Inactivo" from clientes where num_clie = ?', [num_clie], (err, rows) => {
+        conn.query('update clientes set estado="INACTIVO" where num_clie = ?', [num_clie], (err, rows) => {
             res.json({ message: "Registro Eliminado" });
         });
     });

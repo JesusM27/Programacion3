@@ -48,7 +48,7 @@ controller.delete = (req, res) => {
     const { idsuc } = req.params;
 
     req.getConnection((err, conn) => {
-        conn.query('update sucursales set estado="Inactivo" from sucursales where idsuc = ?', [idsuc], (err, rows) => {
+        conn.query('update sucursales set estado="INACTIVA" where idsuc = ?', [idsuc], (err, rows) => {
             res.json({ message: "Registro Eliminado" });
         });
     });

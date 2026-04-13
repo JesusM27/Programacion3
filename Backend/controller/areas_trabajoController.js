@@ -48,7 +48,7 @@ controller.delete = (req, res) => {
     const { idarea } = req.params;
 
     req.getConnection((err, conn) => {
-        conn.query('update areas_trabajo set estado="Inactivo" from areas_trabajo where idarea = ?', [idarea], (err, rows) => {
+        conn.query('update areas_trabajo set estado="INACTIVA" where idarea = ?', [idarea], (err, rows) => {
             res.json({ message: "Registro Eliminado" });
         });
     });

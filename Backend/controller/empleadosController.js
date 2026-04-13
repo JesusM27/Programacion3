@@ -48,7 +48,7 @@ controller.delete = (req, res) => {
     const { idemp } = req.params;
 
     req.getConnection((err, conn) => {
-        conn.query('update empleados set estado="Inactivo" from empleados where idemp = ?', [idemp], (err, rows) => {
+        conn.query('update empleados set estado="INACTIVO" where idemp = ?', [idemp], (err, rows) => {
             res.json({ message: "Registro Eliminado" });
         });
     });
